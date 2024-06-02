@@ -22,8 +22,8 @@ router.get('/student/data', async (req, res) => {
 
 
 router.post('/student/data', async (req, res) => {
-    // const {error} = validateData(req.body)
-    // if(error) res.status(400).send(error.details[0].message)
+    const {error} = validateData(req.body)
+    if(error) res.status(400).send(error.details[0].message)
 
     let datas = new dataModel({
         id: req.body.id,
@@ -47,12 +47,12 @@ router.get('/student/data/:id', async (req, res) => {
 })
 
 
-// function validateData(datas){
-//     const schema = {
-//         name : Joi.string().required().min(3)
-//     }
-//     return Joi.validate(datas,schema)
-// }
+function validateData(datas){
+    const schema = {
+        name : Joi.string().required().min(3)
+    }
+    return Joi.validate(datas,schema)
+} // validaters()
 
 
 
